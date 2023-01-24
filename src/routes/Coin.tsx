@@ -151,7 +151,11 @@ interface ITickersData {
   };
 }
 
-function Coin() {
+interface ICoinProps {
+  isDark: boolean;
+}
+
+function Coin({ isDark }: ICoinProps) {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
@@ -205,7 +209,6 @@ function Coin() {
         {loading ? null : (
           <GoBackBtn onClick={goBackClick}> &lt; Back</GoBackBtn>
         )}
-
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
@@ -256,7 +259,7 @@ function Coin() {
               <Price />
             </Route>
             <Route path={`/:${coinId}/chart`}>
-              <Chart coinId={coinId} />
+              <Chart coinId={coinId} isDark={isDark} />
             </Route>
           </Switch>
         </>

@@ -64,7 +64,11 @@ interface CoinInterface {
   type: string;
 }
 
-function Coins() {
+interface toggleTheme {
+  toggleTheme: () => void;
+}
+
+function Coins({ toggleTheme }: toggleTheme) {
   // const [loading, setLoading] = useState(true);
   // const [coins, setCoins] = useState<CoinInterface[]>([]);
   // useEffect(() => {
@@ -86,6 +90,7 @@ function Coins() {
       </HelmetProvider>
       <Header>
         <Title>Coins</Title>
+        <button onClick={toggleTheme}>Toggle Mode</button>;
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
